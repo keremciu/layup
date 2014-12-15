@@ -18,6 +18,7 @@ class UserIdentity extends CUserIdentity
         {
             $this->id=$record->id;
             $this->setState('token', $this->password);
+            $this->setState('avatar_url', $record->avatar_url);
             $this->setState('type', $record->type);
             $this->setState('username', $record->username);
             $this->setState('name', $record->name);

@@ -69,16 +69,21 @@ class SiteController extends Controller
 						$model->activate = 1;
 						if ($model->save()) {
 							Yii::app()->user->setFlash('info', '<strong>Success!</strong> We created your dribbbler account with your dribbble.');
-							$this->redirect('index');
+							$this->redirect(Yii::app()->homeUrl);
 						}
 					}
 				}
 			}
 		}
 
+		// Get shots
+		$shots = Shots::model()->findAll();
 
+		$this->render('index',array('shots'=>$shots));
+	}
 
-		$this->render('index');
+	public function actionAbout() {
+		$this->render('about');
 	}
 
 	public function actionSignin() {
@@ -101,27 +106,6 @@ class SiteController extends Controller
 			else
 				$this->render('error', $error);
 		}
-	}
-
-	public function actionLogin()
-	{
-		$this->layout='column2';
-		$model=new LoginForm;
-
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			if($model->validate() && $model->login())
-				$this->redirect(array('site/admin'));
-		}
-
-		$this->render('login',array('model'=>$model));
 	}
 
 	/**

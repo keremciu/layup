@@ -2,7 +2,7 @@
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Dribbble Invite',
+	'name'=>'Layup',
 	'language'=>'en',
 	'preload'=>array('log'),
 	'import'=>array(
@@ -20,6 +20,12 @@ return array(
 		),
 	),
 	'components'=>array(
+		'clientScript' => array(
+			'scriptMap' => array('jquery.js' => false),
+			'class' => 'ext.NLSClientScript',
+			'compressMergedJs' => true,
+   			'compressMergedCss' => true,
+		),
 		'mailer' => array(
       		'class' => 'application.extensions.EMailer',
       	),
@@ -31,29 +37,24 @@ return array(
 		    'class'=>'application.extensions.EPhpThumb.EPhpThumb',
 		    'options'=>array()
 		),
-		'bootstrap'=>array(
-        	'class'=>'application.extensions.bootstrap.components.Booster',
-        	'responsiveCss' => true,
-    	),
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=dribbble',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'root',
-			'charset' => 'utf8',
+		'assetManager' => [
+			'excludeFiles' =>array('jquery.js','jui','treeview','yiitab','rating','autocomplete','jquery.yii.js'),
+		],
+		'db'=>require_once('_db.php'),
+		'errorHandler'=>array(
+			'errorAction'=>'site/error',
 		),
 		'urlManager'=>array(
 	        'urlFormat'=>'path',
 	        'showScriptName'=>false,
 			'caseSensitive'=>false,
 			'rules'=>array(
-				'<action:\w+>'=>'site/<action>',
+				'<action:\w+>/'=>'site/index',
+				'<controller:\w+>/<title:.*?>/<id:\d+>'=>'<controller>/view',
+				'<controller:\w+>/<title:.*?>/<id:\d+>-<name:.*?>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
-		),
-		'errorHandler'=>array(
-			'errorAction'=>'site/error',
 		),
 		'log'=>array(
 			'class'=>'CLogRouter',
@@ -65,14 +66,6 @@ return array(
 			),
 		),
 	),
-
-	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
-	'params'=>array(
-		// Dribbble app infos
-		'client_id' => '892332a39770b7446ffe2e2aa3f4736f7bdc1df8180161c85d41bf047068770a',
-		'client_secret' => '32b0079edd0803c0fd17d792202c724ec1bf9af86fe8311860c1aa01373025cc',
-		// this is used in contact page
-		'adminEmail'=>'kerem@ritmix.org',
-	),
+	// All paramaters from _app.php file
+	'params'=>require_once('_app.php'),
 );
