@@ -28,5 +28,11 @@ This project's first aim is help to designers and it's open source, anyone can h
 
 3. **You are a dribbble player and you have an invitation.**
 
+- You can share your invitation shot on this platform.
 - Go http://layup.co/ and find to new talent!
 
+Everyone can help to improve this project. If you have an idea, please create issue.
+
+What I use for this platform:
+- Yii 1.1.13
+- MySQL Database
