@@ -77,9 +77,11 @@ class SiteController extends Controller
 		}
 
 		// Get shots
-		$shots = Shots::model()->findAll();
+		$shots = Shots::model()->findAll(array('condition'=>'activate=0'));
+		$drafts = Shots::model()->findAll(array('condition'=>'activate=3'));
+		$shares = Shares::model()->findAll();
 
-		$this->render('index',array('shots'=>$shots));
+		$this->render('index',array('shots'=>$shots,'drafts'=>$drafts,'shares'=>$shares));
 	}
 
 	public function actionAbout() {

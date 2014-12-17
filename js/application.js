@@ -34,6 +34,7 @@ if (elementExists) {
 }
 
 $(function() {
+  $('[data-toggle="tooltip"]').tooltip();
   if ($.session.get('showrules') != 0) {
     $(".rules").fadeIn().addClass('pad');
   }

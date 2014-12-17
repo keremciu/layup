@@ -19,7 +19,7 @@ class ShotsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('new','update'),
+				'actions'=>array('new','update','share','shareit'),
 				'users'=>array('@'),
 			),
 			array('allow',
@@ -37,6 +37,27 @@ class ShotsController extends Controller
 		$model = $this->loadModel($id);
 		$ip = Yii::app()->request->getUserHostAddress();
 		$record=Viewers::model()->findByAttributes(array('ip'=>$ip,'relevant_id'=>$id));
+
+		// Check is it drafted
+		if ($model->user->type != "Player") {
+			$curl = curl_init();
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($curl, CURLOPT_URL, 'https://api.dribbble.com/players/'.$model->user->username);
+			$user = curl_exec($curl);
+			curl_close($curl);
+			$user = json_decode($user);
+
+			if (isset($user->drafted_by_player_id)) {
+				// Update player type
+				$getplayer = Users::model()->findByPk($model->user->id);
+				$getplayer->drafted_by_player_id = $user->drafted_by_player_id;
+				$getplayer->type = "Player";
+				$getplayer->activate = 3;
+				$getplayer->update();
+				// Update drafted shots
+				Shots::model()->updateAll(array('activate'=>3),'user_id="'.$model->user->id.'"');
+			}
+		}
 
 		if($record===null) {
 			$view = new Viewers;
@@ -99,6 +120,9 @@ class ShotsController extends Controller
 	{
 		$model=new Shots;
 
+		$myshots = Shots::model()->findAll(array('condition' => 'user_id = :pid','params'=>array(':pid'=>Yii::app()->user->id)));
+		$shots_count = count($myshots);
+
 		if(isset($_POST['Shots']))
 		{
 			$model->attributes=$_POST['Shots'];
@@ -120,7 +144,44 @@ class ShotsController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'shots_count'=>$shots_count,
 		));
+	}
+
+	public function actionShare()
+	{
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($curl, CURLOPT_URL, 'https://api.dribbble.com/players/'.Yii::app()->user->username.'/shots/');
+		$myshots = curl_exec($curl);
+		curl_close($curl);
+		$myshots = json_decode($myshots);
+
+		$this->render('share',array(
+			'myshots'=>$myshots->shots,
+		));
+	}
+
+	public function actionShareIt()
+	{
+		if (isset($_POST)) {
+			$object = $this->objectToArray($_POST);
+
+			$model = New Shares;
+			// Share data replaces new share entry fields
+			$model->attributes = $object;
+
+			$validation=Shares::model()->findByAttributes(array('shot_id'=>$model->shot_id));
+
+			if (isset($validation)) {
+				Shares::model()->findByPk($validation->id)->delete();
+				echo "deleted";
+			} else {
+				if ($model->save()) {
+					echo "success";
+				}
+			}
+		}
 	}
 
 	public function actionUpdate($id)

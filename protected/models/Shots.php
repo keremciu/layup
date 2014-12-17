@@ -37,7 +37,6 @@ class Shots extends CActiveRecord
         }
     }  
 
-
 	public function relations()
 	{
 		return array(

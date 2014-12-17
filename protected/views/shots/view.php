@@ -38,7 +38,9 @@
 		<?php 
 			if ((!Yii::app()->user->isGuest) && (Yii::app()->user->type == "Player")) {
 		?>
+		<?php if ($model->user->type != "Player") { ?>
 		<a href="http://dribbble.com/<?php echo $model->user->username;?>" class="btn btn-dribbble" target="_blank">Draft</a>
+		<?php } ?>
 		<?php 
 			}
 		?>

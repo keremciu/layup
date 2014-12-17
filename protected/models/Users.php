@@ -18,9 +18,9 @@ class Users extends CActiveRecord
 	{
 		return array(
 			array('player_id, name, username, type, created_at, updated_at, activate', 'required'),
-			array('player_id, activate', 'numerical', 'integerOnly'=>true),
+			array('player_id, drafted_by_player_id, activate', 'numerical', 'integerOnly'=>true),
 			array('name, username, location, type', 'length', 'max'=>255),
-			array('id, player_id, name, username, html_url, avatar_url, bio, location, links, type, created_at, updated_at, activate', 'safe'),
+			array('id, player_id, name, username, html_url, avatar_url, bio, location, links, type, created_at, updated_at, drafted_by_player_id, activate', 'safe'),
 		);
 	}
 

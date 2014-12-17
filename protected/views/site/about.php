@@ -7,8 +7,9 @@
 <br/>
 <h5>FEATURES</h5>
 <ul>
-	<li>Everyone needs a dribbble account.</li>
-	<li>Only dribbble players be able to like shots which on the platform. <br/><small><strong>Because we want to find talented prospects.</strong></small></li>
-	<li>Only dribbble prospects be able to upload shot, every prospect has two shot remaining.</li>
+	<li>If you want to use this platform, you need a dribbble account.</li>
+	<li>If you have an invitation shot on dribbble, you can share it on this platform to reach more designers.</li>
+	<li>Only dribbble players be able to like shots which on this platform. <br/><small><strong>Because we want to find only very talented prospects.</strong> Other showcases has like spam problems.</small></li>
+	<li>Only dribbble prospects be able to upload shot, every prospect has 2 shot remaining.</li>
 </ul>
 <br/>
