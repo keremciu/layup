@@ -4,35 +4,49 @@ Layup
 Project page:
 http://layup.co/
 
-Layup is an invitation system with dribbble api.
+Layup is an invite platform which uses dribbble api.
 
-https://dribbble.com/ has an invitation model for upload works. If you are a designer and you want to add your works on dribbble, you need an invitation.
+dribbble.com has an invitation model.
+
+What's the invitation model?
+
+An invitation system is a method of encouraging people to join an organization, such as a club or a website. In regular society, it refers to any system whereby new members are chosen; they cannot simply apply.
+
+tl;dr: If you're a talented designer and you want to add your works on dribbble, you need an invitation!
 
 ### How can you get invitation?
 
-You can get invitation from dribbble players who has an invitation.
-This project's first aim is help to designers and it's open source, anyone can help or see how it works.
+You can get invitation only from dribbble players (users) who has an invitation.
+
+This projects' first aim is help to talented designers quickly become to a dribbble player.
 
 ### How it works?
 
-1. **If you are a designer and you don't have an invitation**
+Firstly who're you? a dribbble player or prospect?
 
-- First of all, you need to sign-up on dribbble. Go for it, https://dribbble.com/ and sign-up.
+1. **You're a talented designer and also you don't have an invitation**
+
+- First of all, you need a dribbble account. If you don't have one, go for it, https://dribbble.com/ and sign-up.
+- Go http://layup.co/ and sign-in with your dribbble account.
+- Now you can upload your best shot! after that you're in the system and you've a chance for invitation.
+
+
+2. **You're a dribbble player and you've an invitation but you're having trouble finding a new talent. (Don't worry this system will be helped you :)**
+
+- Go http://layup.co/ and find a new talent!
+**OR**
 - Go http://layup.co/ and sign-in with dribbble.
-- Upload your best shot! ta da! you're in the system and you have a chance for invitation.
+- Now you can share your dribbble invitation shot on this platform.
 
-2. **You are a dribbble player and you don't have an invitation but you want to help good prospects.**
+3. **If you're a dribbble player and you don't have an invitation but you want to help new talents.**
 
 - Go http://layup.co/ and sign-in with dribbble.
-- Like nice shots!
-
-3. **You are a dribbble player and you have an invitation.**
-
-- You can share your invitation shot on this platform.
-- Go http://layup.co/ and find to new talent!
+- Like only nice shots! Likes important for sorting.
 
 Everyone can help to improve this project. If you have an idea, please create issue.
 
-What I use for this platform:
+What I've used to create this platform:
 - Yii 1.1.13
 - MySQL Database
+
+15 july 2015: I'll be update yii version in two weeks.
